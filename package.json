@@ -1,0 +1,40 @@
+{
+  "name": "pomopal",
+  "version": "1.0.1",
+  "description": "A playful, automatic Pomodoro timer for Windows",
+  "main": "main.js",
+  "author": "PomoPal",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test timer-state.test.js",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^39.2.6",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.pomopal.timer",
+    "productName": "PomoPal",
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "styles.css",
+      "app.js",
+      "timer-state.js",
+      "assets/**/*"
+    ],
+    "win": {
+      "icon": "assets/pomopal-mascot.png",
+      "target": ["nsis", "portable"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}

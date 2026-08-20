@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'">
+  <title>PomoPal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="brand"><span class="mini-tomato">●</span> PomoPal</div>
+      <button id="settingsButton" class="icon-button" aria-label="Open settings">⚙</button>
+    </header>
+
+    <main>
+      <section class="timer-panel">
+        <div class="mode-row">
+          <h1 id="modeLabel">FOCUS TIME</h1>
+          <span id="cycleLabel">Cycle 1 of 4</span>
+        </div>
+        <div class="tomato-clock" aria-live="polite">
+          <img src="assets/pomopal-mascot.png" alt="PomoPal, a cheering tomato mascot">
+          <div id="time">25:00</div>
+        </div>
+        <p id="memeLine" class="meme-line">Tiny timer. Suspiciously large ambitions.</p>
+        <div class="controls">
+          <button id="toggleButton" class="button primary">Pause</button>
+          <button id="resetButton" class="button secondary">↻ Reset</button>
+          <button id="skipButton" class="button green">Skip →</button>
+        </div>
+        <div class="dots" id="cycleDots" aria-label="Pomodoro cycle progress"></div>
+      </section>
+
+      <aside class="reminders-panel">
+        <div class="panel-title"><h2>REMINDERS</h2><span>★</span></div>
+        <div id="reminderList"></div>
+        <div class="pep-talk">
+          <strong>Body maintenance patch</strong>
+          <span>Install during your next break.</span>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="alertOverlay" class="alert-overlay" hidden>
+    <div class="confetti" aria-hidden="true">◆　●　★　▲　●　◆</div>
+    <img src="assets/pomopal-mascot.png" alt="PomoPal celebrating">
+    <h2 id="alertTitle">YOU DID THE THING!</h2>
+    <p id="alertReminder">Next up: Drink water</p>
+    <button id="dismissAlert" class="button primary">Let’s go!</button>
+  </div>
+
+  <dialog id="settingsDialog">
+    <form method="dialog">
+      <div class="dialog-title"><h2>Settings</h2><button class="icon-button" value="cancel" aria-label="Close settings">×</button></div>
+      <div class="setting-grid">
+        <label>Focus minutes<input id="focusMinutes" type="number" min="1" max="180"></label>
+        <label>Break minutes<input id="breakMinutes" type="number" min="1" max="60"></label>
+        <label>Long break<input id="longBreakMinutes" type="number" min="1" max="120"></label>
+        <label>Cycles until long break<input id="cyclesUntilLongBreak" type="number" min="1" max="12"></label>
+      </div>
+      <label class="toggle-setting"><span>Auto-start timers<small>Start the next session automatically</small></span><input id="autoStart" type="checkbox"></label>
+      <label class="toggle-setting"><span>Launch with Windows<small>Open PomoPal when you sign in</small></span><input id="launchAtLogin" type="checkbox"></label>
+      <label class="toggle-setting"><span>Sound</span><input id="sound" type="checkbox"></label>
+      <label class="volume-setting">Volume <input id="volume" type="range" min="0" max="100"><output id="volumeOutput">80%</output></label>
+      <button id="saveSettings" value="default" class="button primary wide">Save settings</button>
+    </form>
+  </dialog>
+
+  <script src="timer-state.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
