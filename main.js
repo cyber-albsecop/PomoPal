@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const fs = require('node:fs');
 const path = require('node:path');
+const { startupExecutable } = require('./startup-path');
 
 let win;
 const hasSingleInstanceLock = app.requestSingleInstanceLock();
@@ -29,7 +30,15 @@ function readSettings() {
 
 function saveSettings(settings) {
   fs.writeFileSync(settingsPath(), JSON.stringify(settings, null, 2));
-  app.setLoginItemSettings({ openAtLogin: Boolean(settings.launchAtLogin) });
+  setLaunchAtLogin(settings.launchAtLogin);
+}
+
+function setLaunchAtLogin(enabled) {
+  app.setLoginItemSettings({
+    openAtLogin: Boolean(enabled),
+    path: startupExecutable(),
+    args: []
+  });
 }
 
 function createWindow() {
@@ -54,7 +63,7 @@ function createWindow() {
 if (!hasSingleInstanceLock) {
   app.quit();
 } else app.whenReady().then(() => {
-  app.setLoginItemSettings({ openAtLogin: Boolean(readSettings().launchAtLogin) });
+  setLaunchAtLogin(readSettings().launchAtLogin);
   ipcMain.handle('settings:get', readSettings);
   ipcMain.handle('settings:save', (_event, settings) => {
     saveSettings(settings);

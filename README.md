@@ -14,7 +14,7 @@ A playful, open-source automatic Pomodoro timer for Windows. PomoPal alternates 
 
 ## Install
 
-For the simplest start, run the portable `dist/PomoPal 1.0.1.exe`. It needs no installation. Alternatively, run `dist/PomoPal Setup 1.0.1.exe` to install it. The default settings start a 25-minute focus timer immediately and register PomoPal to open when you sign in to Windows.
+For the simplest start, run the portable `dist/PomoPal 1.0.2.exe`. It needs no installation. Alternatively, run `dist/PomoPal Setup 1.0.2.exe` to install it. The default settings start a 25-minute focus timer immediately and register PomoPal to open when you sign in to Windows.
 
 Use the gear button to personalize focus, short-break and long-break durations, cycles, automatic starts, Windows startup, sound, volume, and reminders.
 

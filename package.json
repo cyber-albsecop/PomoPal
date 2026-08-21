@@ -1,13 +1,13 @@
 {
   "name": "pomopal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A playful, automatic Pomodoro timer for Windows",
   "main": "main.js",
   "author": "PomoPal",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "test": "node --test timer-state.test.js",
+    "test": "node --test timer-state.test.js startup-path.test.js",
     "dist": "electron-builder --win"
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
       "styles.css",
       "app.js",
       "timer-state.js",
+      "startup-path.js",
       "assets/**/*"
     ],
     "win": {
